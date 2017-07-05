@@ -14,7 +14,6 @@ setup(
 		author="Onen Julius",
 		author_email="jonen54@gmail.com",
 		description="Epic translator helps you translate any test to any language",
-		"url"="https://github.com/devGenie/epic_translator",
 		install_requires=dependencies,
 		packages=["app"],
 		entry_points={
