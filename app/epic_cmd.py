@@ -5,7 +5,7 @@ from docopt import docopt
 import requests
 
 """
-    Usage: EpicTranslator translate <text> to <language>
+    Usage: EpicTranslator translate  to <language> <text>...
 
 
     """
@@ -16,13 +16,16 @@ class GenieInteractive (cmd.Cmd):
     prompt = '(EpicTranslator) '
     file = None
     base_url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto"
-
+    #arguments=docopt.docopt(__doc__)
     @DocoptInteractive
     def do_translate(self, arg):
-        """Usage: translate <text> to <language>"""
-        params={"tl":"esp","dt":"t",q:""}
-        r=requests.get(base_url)
-        print(arg)
+        """Usage: translate to <language> <text>..."""
+
+        text_value=" ".join(arg['<text>'])
+        #print(requests.urlencode(text_value))
+        values={"tl":"esp","dt":"t","q":text_value}
+        r=requests.get(self.base_url,params=values)
+        print(r.json)
 
     @DocoptInteractive
     def do_languages(self, arg):
