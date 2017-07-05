@@ -2,16 +2,26 @@ import cmd
 import sys
 from docopt_decorator import DocoptInteractive
 from docopt import docopt
+import requests
+
+"""
+    Usage: EpicTranslator translate <text> to <language>
+
+
+    """
 
 class GenieInteractive (cmd.Cmd):
     intro = 'Welcome to my Epic Translator!' \
     + ' (type help for a list of commands.)'
-    prompt = '(Epic Translator) '
+    prompt = '(EpicTranslator) '
     file = None
+    base_url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto"
 
     @DocoptInteractive
     def do_translate(self, arg):
-        """Usage: translate <text> <target>"""
+        """Usage: translate <text> to <language>"""
+        params={"tl":"esp","dt":"t",q:""}
+        r=requests.get(base_url)
         print(arg)
 
     @DocoptInteractive
